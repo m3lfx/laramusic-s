@@ -35,9 +35,16 @@ Route::get('my/page', function () {
                 return "Books in the {$genre} category.";
                });
 
-               Route::get('/views', function () {
-                return View::make('simple');
-               });
+            //    Route::get('/views', function () {
+            //     return View::make('simple');
+            //    });
+
+Route::get('/views/{squirrel}', function ($squirrel) {
+$data['squirrel'] = $squirrel;
+
+return View::make('simple', $data);
+});
+               
                
                
            

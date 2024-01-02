@@ -7,5 +7,7 @@
 </head>
 <body>
     <h1>yes Views</h1>
+    <p><p>I wish I were a <b>{{$squirrel}}</b>squirrel</p>
+</p>
 </body>
 </html>
