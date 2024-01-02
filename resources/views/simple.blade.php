@@ -8,6 +8,16 @@
 <body>
     <h1>yes Views</h1>
     <p><p>I wish I were a <b>{{$squirrel}}</b>squirrel</p>
+    <p>{{ date('d/m/y') }}</p>
+    @if ($something === 'Red Panda')
+        <p>Something is red, white, and brown!</p>
+    @elseif ($something == 'Giant Panda') 
+        <p>Something is black and white!</p>
+    @else
+        <p>Something could be a squirrel.</p>
+    @endif
+
+
 </p>
 </body>
 </html>
