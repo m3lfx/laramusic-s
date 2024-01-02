@@ -44,6 +44,20 @@ $data['squirrel'] = $squirrel;
 
 return View::make('simple', $data);
 });
+
+Route::get('/first', function () {
+    return Redirect::to('second');
+    });
+Route::get('/second', function () {
+return 'Second route.';
+});
+
+Route::get('file/download', function () {
+    $file = 'D:\3rdterm_files\week1_dalisay.pdf';
+    return Response::download($file);
+    });
+   
+   
                
                
                
