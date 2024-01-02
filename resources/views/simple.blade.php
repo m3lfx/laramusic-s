@@ -17,6 +17,14 @@
         <p>Something could be a squirrel.</p>
     @endif
 
+    @foreach ($manyThings as $thing)
+        <p>{{ $thing }}</p>
+    @endforeach
+
+  
+
+    
+
 
 </p>
 </body>

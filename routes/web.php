@@ -42,7 +42,7 @@ Route::get('my/page', function () {
 Route::get('/views/{squirrel}', function ($squirrel) {
 $data['squirrel'] = $squirrel;
 $data['something'] = 'Giant Panda';
-
+$data['manyThings'] = array('one', 'two', 'three');
 return View::make('simple', $data);
 });
 
