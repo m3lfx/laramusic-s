@@ -20,5 +20,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('my/page', function () {
     return 'Hello world!';
     });
+
+    Route::get('/books', function () {
+        return 'Books index.';
+        });
+
+        Route::get('/books/{genre}', function ($genre) {
+            return "Books in the {$genre} category.";
+            });
+           
+
+       
     
    
