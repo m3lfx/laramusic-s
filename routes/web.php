@@ -21,13 +21,25 @@ Route::get('my/page', function () {
     return 'Hello world!';
     });
 
-    Route::get('/books', function () {
-        return 'Books index.';
-        });
+    // Route::get('/books', function () {
+    //     return 'Books index.';
+    //     });
 
-        Route::get('/books/{genre}', function ($genre) {
-            return "Books in the {$genre} category.";
-            });
+        // Route::get('/books/{genre}', function ($genre) {
+        //     return "Books in the {$genre} category.";
+        //     });
+            Route::get('/books/{genre?}', function ($genre = 'Crime') {
+                if ($genre == null) {
+                return 'Books index.';
+                }
+                return "Books in the {$genre} category.";
+               });
+
+               Route::get('/views', function () {
+                return View::make('simple');
+               });
+               
+               
            
 
        
