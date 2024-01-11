@@ -16,7 +16,7 @@ class ArtistController extends Controller
 
     public function create() {
 
-        return 'from create';
+        return View::make('artist.create');
     }
 
     public function store() {
