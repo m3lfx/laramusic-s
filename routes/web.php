@@ -17,53 +17,43 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('my/page', function () {
-    return 'Hello world!';
-    });
-
-    // Route::get('/books', function () {
-    //     return 'Books index.';
-    //     });
-
-        // Route::get('/books/{genre}', function ($genre) {
-        //     return "Books in the {$genre} category.";
-        //     });
-            Route::get('/books/{genre?}', function ($genre = 'Crime') {
-                if ($genre == null) {
-                return 'Books index.';
-                }
-                return "Books in the {$genre} category.";
-               });
-
-            //    Route::get('/views', function () {
-            //     return View::make('simple');
-            //    });
-
-Route::get('/views/{squirrel}', function ($squirrel) {
-$data['squirrel'] = $squirrel;
-$data['something'] = 'Giant Panda';
-$data['manyThings'] = array('one', 'two', 'three');
-return View::make('simple', $data);
+Route::get('/', function () {
+    return View::make('home');
 });
 
-Route::get('/first', function () {
-    return Redirect::to('second');
-    });
-Route::get('/second', function () {
-return 'Second route.';
-});
+// Route::get('/books', function () {
+//     return 'Books index.';
+//     });
 
-Route::get('file/download', function () {
-    $file = 'D:\3rdterm_files\week1_dalisay.pdf';
-    return Response::download($file);
-    });
-   
-   
-               
-               
-               
-           
+// Route::get('/books/{genre}', function ($genre) {
+//     return "Books in the {$genre} category.";
+//     });
+// Route::get('/books/{genre?}', function ($genre = 'Crime') {
+//     if ($genre == null) {
+//         return 'Books index.';
+//     }
+//     return "Books in the {$genre} category.";
+// });
 
-       
-    
-   
+//    Route::get('/views', function () {
+//     return View::make('simple');
+//    });
+
+// Route::get('/views/{squirrel}', function ($squirrel) {
+//     $data['squirrel'] = $squirrel;
+//     $data['something'] = 'Giant Panda';
+//     $data['manyThings'] = array('one', 'two', 'three');
+//     return View::make('simple', $data);
+// });
+
+// Route::get('/first', function () {
+//     return Redirect::to('second');
+// });
+// Route::get('/second', function () {
+//     return 'Second route.';
+// });
+
+// Route::get('file/download', function () {
+//     $file = 'D:\3rdterm_files\week1_dalisay.pdf';
+//     return Response::download($file);
+// });
