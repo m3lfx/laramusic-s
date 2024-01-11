@@ -52,8 +52,8 @@ class ArtistController extends Controller
         return Redirect::to('artist');
     }
 
-    public function delete() {
-        
-        return 'from delete';
+    public function delete($id) {
+        Artist::destroy($id);
+        return Redirect::to('artist');
     }
 }
