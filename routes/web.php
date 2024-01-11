@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ArtistController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,3 +57,5 @@ Route::get('/', function () {
 //     $file = 'D:\3rdterm_files\week1_dalisay.pdf';
 //     return Response::download($file);
 // });
+
+Route::get('/artist', [ArtistController::class, 'index']);
