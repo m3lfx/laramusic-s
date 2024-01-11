@@ -18,7 +18,8 @@ class ArtistController extends Controller
         return 'from store';
     }
 
-    public function edit() {
+    public function edit($id) {
+        dd($id);
         return 'from edit';
     }
 
@@ -27,6 +28,7 @@ class ArtistController extends Controller
     }
 
     public function delete() {
+        
         return 'from delete';
     }
 }
