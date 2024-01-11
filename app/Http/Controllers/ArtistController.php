@@ -4,16 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artist;
+use View;
 
 class ArtistController extends Controller
 {
     public function index() {
         $artists = Artist::all();
-        foreach($artists as $artist) {
-            dump($artist->name, $artist->country);
-        }
+        return View::make('artist.index', compact('artists'));
        
-        // return 'from index';
     }
 
     public function create() {
