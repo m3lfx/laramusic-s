@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artist;
+use Illuminate\Support\Facades\Redirect as FacadesRedirect;
 use View;
 use Redirect;
 
@@ -42,8 +43,13 @@ class ArtistController extends Controller
         return View::make('artist.edit', compact('artist'));
     }
 
-    public function update(){
-        return 'from update';
+    public function update(Request $request, $id){
+        $artist = Artist::find($id);
+        $artist->name = $request->name;
+        $artist->country = $request->country;
+        $artist->img_path = $request->img_path;
+        $artist->save();
+        return Redirect::to('artist');
     }
 
     public function delete() {
