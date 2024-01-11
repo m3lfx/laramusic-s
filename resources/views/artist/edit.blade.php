@@ -1,6 +1,6 @@
 @extends('layouts.base')
 @section('body')
-    <form action="{{url('/artist/store')}}" method="POST">
+    <form action="{{url('/artist/'.$artist->id.'/update')}}" method="POST">
         @csrf
         
         <div class="form-group">
