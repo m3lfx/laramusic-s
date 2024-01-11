@@ -69,10 +69,9 @@ Route::post('artist/{id}/update', [ArtistController::class, 'update']);
 Route::get('artist/{id}/delete', [ArtistController::class, 'delete']);
 
 Route::get('/db', function () {
-    Schema::create('artists', function ($table) {
-        $table->string('username', 32);
-        $table->string('email', 32);
-        $table->string('password', 60);
-        $table->timestamps();
-    });
+   
+    Schema::table('artists', function($table) {
+        $table->dropColumn('username');
+        });
+       
 });

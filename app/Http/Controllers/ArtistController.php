@@ -3,14 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Artist;
 
 class ArtistController extends Controller
 {
     public function index() {
-        return 'from index';
+        $artists = Artist::all();
+        foreach($artists as $artist) {
+            dump($artist->name, $artist->country);
+        }
+       
+        // return 'from index';
     }
 
     public function create() {
+
         return 'from create';
     }
 
