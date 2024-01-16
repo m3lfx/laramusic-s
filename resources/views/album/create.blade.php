@@ -2,7 +2,7 @@
 @section('body')
     {{-- {{dd($artists)}} --}}
     <div class="container-fluid">
-        <form action="{{ url('/artist/store') }}" method="POST">
+        <form action="{{ route('album.store') }}" method="POST">
             @csrf
 
             <div class="form-group">
