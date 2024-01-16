@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\AlbumController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -67,12 +68,12 @@ Route::post('/artist/{id}/update', [ArtistController::class, 'update']);
 Route::get('artist/{id}/delete', [ArtistController::class, 'delete']);
 
 Route::prefix('album')->group(function () {
-    Route::get('/', [ArtistController::class, 'index']);
-    Route::get('/create', [ArtistController::class, 'create']);
-    Route::post('/store', [ArtistController::class, 'store']);
-    Route::get('/{id}/edit', [ArtistController::class, 'edit']);
-    Route::post('/{id}/update', [ArtistController::class, 'update']);
-    Route::get('/{id}/delete', [ArtistController::class, 'delete']);
+    Route::get('/', [AlbumController::class, 'index']);
+    Route::get('/create', [AlbumController::class, 'create']);
+    Route::post('/store', [AlbumController::class, 'store']);
+    Route::get('/{id}/edit', [AlbumController::class, 'edit']);
+    Route::post('/{id}/update', [AlbumController::class, 'update']);
+    Route::get('/{id}/delete', [AlbumController::class, 'delete']);
 });
 Route::get('/db', function () {
 
