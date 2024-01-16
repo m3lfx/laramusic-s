@@ -9,8 +9,14 @@ use Redirect;
 
 class AlbumController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $albums = Album::all();
         return View::make('album.index', compact('albums'));
+    }
+
+    public function create()
+    {
+        return View::make('album.create');
     }
 }

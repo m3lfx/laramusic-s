@@ -68,12 +68,12 @@ Route::post('/artist/{id}/update', [ArtistController::class, 'update']);
 Route::get('artist/{id}/delete', [ArtistController::class, 'delete']);
 
 Route::prefix('album')->group(function () {
-    Route::get('/', [AlbumController::class, 'index']);
-    Route::get('/create', [AlbumController::class, 'create']);
-    Route::post('/store', [AlbumController::class, 'store']);
-    Route::get('/{id}/edit', [AlbumController::class, 'edit']);
-    Route::post('/{id}/update', [AlbumController::class, 'update']);
-    Route::get('/{id}/delete', [AlbumController::class, 'delete']);
+    Route::get('/', [AlbumController::class, 'index'])->name('album.index');
+    Route::get('/create', [AlbumController::class, 'create'])->name('album.create');
+    Route::post('/store', [AlbumController::class, 'store'])->name('album.store');
+    Route::get('/{id}/edit', [AlbumController::class, 'edit'])->name('album.edit');
+    Route::post('/{id}/update', [AlbumController::class, 'update'])->name('album.update');
+    Route::get('/{id}/delete', [AlbumController::class, 'delete'])->name('album.delete');
 });
 Route::get('/db', function () {
 

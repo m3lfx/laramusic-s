@@ -1,6 +1,7 @@
 @extends('layouts.base')
 @section('body')
     {{-- {{dump($albums)}} --}}
+    <a class="btn btn-primary" href="{{url('/album/create')}}" role="button" aria-disabled="true" >add album</a>
     <table class="table table-striped">
         @foreach ($albums as $album)
             <tr>
