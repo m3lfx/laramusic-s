@@ -60,18 +60,23 @@ Route::get('/', function () {
 
 Route::get('/artist', [ArtistController::class, 'index']);
 Route::get('/artist/create', [ArtistController::class, 'create']);
-Route::post('artist/store', [ArtistController::class, 'store']);
-
-Route::get('artist/{id}/edit', [ArtistController::class, 'edit']);
-
-Route::post('artist/{id}/update', [ArtistController::class, 'update']);
+Route::post('/artist/store', [ArtistController::class, 'store']);
+Route::get('/artist/{id}/edit', [ArtistController::class, 'edit']);
+Route::post('/artist/{id}/update', [ArtistController::class, 'update']);
 
 Route::get('artist/{id}/delete', [ArtistController::class, 'delete']);
 
+Route::prefix('album')->group(function () {
+    Route::get('/', [ArtistController::class, 'index']);
+    Route::get('/create', [ArtistController::class, 'create']);
+    Route::post('/store', [ArtistController::class, 'store']);
+    Route::get('/{id}/edit', [ArtistController::class, 'edit']);
+    Route::post('/{id}/update', [ArtistController::class, 'update']);
+    Route::get('/{id}/delete', [ArtistController::class, 'delete']);
+});
 Route::get('/db', function () {
-   
-    Schema::table('artists', function($table) {
+
+    Schema::table('artists', function ($table) {
         $table->dropColumn('username');
-        });
-       
+    });
 });
