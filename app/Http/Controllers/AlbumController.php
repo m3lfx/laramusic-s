@@ -24,11 +24,21 @@ class AlbumController extends Controller
 
     public function store(Request $request) {
         $album = new Album();
-        $album->title = $request->title;
+        $album->title = trim($request->title);
         $album->genre = $request->genre;
         $album->date_released = $request->date_released;
         $album->artist_id = $request->artist_id;
         $album->save();
         return Redirect::route('album.index');
+    }
+
+    public function edit($id) {
+        $album = Album::find($id);
+        $artists = Artist::where('id', '<>', $album->artist_id)->get();
+        // dd($artists);
+        $artist = Artist::where('id', $album->artist_id)->first();
+        // dd($artist->name);
+        
+        return View::make('album.edit', compact('album', 'artist', 'artists'));
     }
 }
