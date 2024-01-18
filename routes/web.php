@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\SongController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -75,6 +76,11 @@ Route::prefix('album')->group(function () {
     Route::post('/{id}/update', [AlbumController::class, 'update'])->name('album.update');
     Route::get('/{id}/delete', [AlbumController::class, 'delete'])->name('album.delete');
 });
+
+Route::resource('songs', SongController::class);
+
+
+
 Route::get('/db', function () {
 
     Schema::table('artists', function ($table) {
