@@ -18,8 +18,8 @@
                     <td>{{ $song->title }}</td>
                     <td>{{ $song->description }}</td>
 
-                    <td><a href="{{ route('song.edit', $song->id) }}"><i class="fas fa-edit"></i></a><a
-                            href="{{ route('song.delete', $song->id) }}"><i class="fas fa-trash" style="color:red"></i></a>
+                    <td><a href="{{ route('songs.edit', $song->id) }}"><i class="fas fa-edit"></i></a><a
+                            href="{{ route('songs.destroy', $song->id) }}"><i class="fas fa-trash" style="color:red"></i></a>
                     </td>
                 </tr>
             @endforeach
