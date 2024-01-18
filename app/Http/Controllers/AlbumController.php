@@ -53,5 +53,10 @@ class AlbumController extends Controller
         
         return Redirect::to('album');
     }
+    public function delete($id)
+    {
+        Album::destroy($id);
+        return Redirect::to('album');
+    }
 
 }
