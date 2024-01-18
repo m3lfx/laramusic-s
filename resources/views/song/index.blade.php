@@ -25,4 +25,5 @@
             @endforeach
         </tbody>
     </table>
+    {{ $songs->links() }}
 @endsection
