@@ -7,12 +7,19 @@ use App\Models\Album;
 use App\Models\Artist;
 use View;
 use Redirect;
+use DB;
 
 class AlbumController extends Controller
 {
     public function index()
     {
         $albums = Album::all();
+
+        $albums = DB::table('artists')
+            ->join('albums', 'artists.id', '=', 'albums.artist_id')->get();
+        // dd($albums);
+            
+            
         return View::make('album.index', compact('albums'));
     }
 
@@ -22,7 +29,8 @@ class AlbumController extends Controller
         return View::make('album.create', compact('artists'));
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $album = new Album();
         $album->title = trim($request->title);
         $album->genre = $request->genre;
@@ -32,13 +40,14 @@ class AlbumController extends Controller
         return Redirect::route('album.index');
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $album = Album::find($id);
         $artists = Artist::where('id', '<>', $album->artist_id)->get();
         // dd($artists);
         $artist = Artist::where('id', $album->artist_id)->first();
         // dd($artist->name);
-        
+
         return View::make('album.edit', compact('album', 'artist', 'artists'));
     }
 
@@ -50,7 +59,7 @@ class AlbumController extends Controller
         $album->date_released = $request->date_released;
         $album->artist_id = $request->artist_id;
         $album->save();
-        
+
         return Redirect::to('album');
     }
     public function delete($id)
@@ -58,5 +67,4 @@ class AlbumController extends Controller
         Album::destroy($id);
         return Redirect::to('album');
     }
-
 }
