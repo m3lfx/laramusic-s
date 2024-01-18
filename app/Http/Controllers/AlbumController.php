@@ -13,13 +13,11 @@ class AlbumController extends Controller
 {
     public function index()
     {
-        $albums = Album::all();
+        // $albums = Album::all();
 
         $albums = DB::table('artists')
             ->join('albums', 'artists.id', '=', 'albums.artist_id')->get();
         // dd($albums);
-            
-            
         return View::make('album.index', compact('albums'));
     }
 
