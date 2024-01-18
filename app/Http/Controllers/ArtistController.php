@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artist;
-use Illuminate\Support\Facades\Redirect as FacadesRedirect;
 use View;
 use Redirect;
 
