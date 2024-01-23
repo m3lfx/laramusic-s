@@ -40,11 +40,11 @@ class SongController extends Controller
     public function store(Request $request)
     {
         // dd($request);
+        
         $song = Song::create(['title' => $request->title,
         'description' => $request->description,
         'album_id' => $request->album_id]);
         return redirect()->route('songs.index');
-       
     }
 
     /**
@@ -66,7 +66,11 @@ class SongController extends Controller
      */
     public function edit($id)
     {
-        //
+        $song = Song::find($id);
+        $my_album = Album::where('id', $song->album_id )->first();
+        // dd($my_album);
+        $albums = Album::where('id', '<>', $song->album_id)->get();
+        return view('song.edit', compact('song', 'my_album', 'albums'));
     }
 
     /**
