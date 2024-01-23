@@ -8,6 +8,7 @@ use Validator;
 
 use App\Models\Song;
 use App\Models\Album;
+use DB;
 
 class SongController extends Controller
 {
@@ -19,6 +20,9 @@ class SongController extends Controller
     public function index()
     {
         $songs = Song::orderBy('id', 'DESC')->paginate(20);
+        $songs = DB::table('songs')->join('albums', 'albums.id', '=', 'songs.album_id')->select('albums.title as album_title', 'songs.title as song_title', 'songs.description', 'songs.id')->paginate(15);
+        // ->get();
+        // dd($songs);
         return View::make('song.index', compact('songs'));
     }
 
@@ -97,7 +101,13 @@ class SongController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+        $song = Song::where('id', $id)->update([
+            'title' =>$request->title, 
+            'description' => $request->description, 
+            'album_id' => $request->album_id]);
+        return redirect()->route('songs.index');
+
     }
 
     /**

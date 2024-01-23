@@ -8,6 +8,7 @@
                 <th scope="col">song id</th>
                 <th scope="col">title</th>
                 <th scope="col">description</th>
+                <th scope="col">album name</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -15,8 +16,9 @@
             @foreach ($songs as $song)
                 <tr>
                     <td>{{ $song->id }}</td>
-                    <td>{{ $song->title }}</td>
+                    <td>{{ $song->song_title }}</td>
                     <td>{{ $song->description }}</td>
+                    <td>{{ $song->album_title }}</td>
 
                     <td><a href="{{ route('songs.edit', $song->id) }}"><i class="fas fa-edit"></i></a><a
                             href="{{ route('songs.destroy', $song->id) }}"><i class="fas fa-trash" style="color:red"></i></a>

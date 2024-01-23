@@ -2,7 +2,7 @@
 @section('body')
     <div class="container">
         <form action="{{ route('songs.update', $song->id) }}" method="POST">
-           
+            @method('PUT')
             @csrf
             <div class="mb-3">
                 <label for="song_name" class="form-label">song Name</label>
