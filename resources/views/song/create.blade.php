@@ -19,7 +19,7 @@
             <select class="form-select" aria-label="Default select example" name="album_id">
                 <option selected>Select an Album</option>
                 @foreach ($albums as $album)
-                    <option value="{{$album->id}}">{{$album->name}}</option>
+                    <option value="{{$album->id}}">{{$album->title}}</option>
                 @endforeach
 
 

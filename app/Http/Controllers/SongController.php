@@ -16,7 +16,7 @@ class SongController extends Controller
      */
     public function index()
     {
-        $songs = Song::paginate(15);
+        $songs = Song::orderBy('id', 'DESC')->paginate(20);
         return View::make('song.index', compact('songs'));
     }
 
@@ -39,7 +39,12 @@ class SongController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $song = Song::create(['title' => $request->title,
+        'description' => $request->description,
+        'album_id' => $request->album_id]);
+        return redirect()->route('songs.index');
+       
     }
 
     /**

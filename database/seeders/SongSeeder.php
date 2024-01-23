@@ -19,7 +19,7 @@ class SongSeeder extends Seeder
             $song = new Song();
             $song->title = $faker->words(3, true);
             $song->description = $faker->paragraph();
-            $song->album_id = $faker->numberBetween(1, 10);
+            $song->album_id = $faker->numberBetween(1, 20);
             $song->save();
 
         }
