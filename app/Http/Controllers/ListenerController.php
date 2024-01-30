@@ -23,7 +23,7 @@ class ListenerController extends Controller
      */
     public function create()
     {
-        //
+        return view('listener.create');
     }
 
     /**
