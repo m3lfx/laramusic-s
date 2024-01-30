@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Listener;
+
+use Storage;
 
 class ListenerController extends Controller
 {
@@ -34,7 +37,19 @@ class ListenerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $listener = new Listener();
+        $listener->name = $request->first_name . " " . $request->last_name;
+        $listener->address = $request->address;
+        // $path = Storage::putFile('images', $request->file('img_path'));
+        // dd($path);
+        $path = Storage::putFileAs(
+            'public/images', $request->file('img_path'), $request->file('img_path')->getClientOriginalName()
+        );
+        $listener->img_path = $path;
+        $listener->save();
+        // dd($request->file('img_path'));
+        return redirect()->route('listeners.index');
+
     }
 
     /**
