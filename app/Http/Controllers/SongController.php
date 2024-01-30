@@ -19,8 +19,11 @@ class SongController extends Controller
      */
     public function index()
     {
-        $songs = Song::orderBy('id', 'DESC')->paginate(20);
-        $songs = DB::table('songs')->join('albums', 'albums.id', '=', 'songs.album_id')->select('albums.title as album_title', 'songs.title as song_title', 'songs.description', 'songs.id')->paginate(15);
+        // $songs = Song::orderBy('id', 'DESC')->paginate(20);
+        $songs = DB::table('songs')
+            ->join('albums', 'albums.id', '=', 'songs.album_id')
+            ->orderBy('id', 'DESC')
+            ->select('albums.title as album_title', 'songs.title as song_title', 'songs.description', 'songs.id')->paginate(15);
         // ->get();
         // dd($songs);
         return View::make('song.index', compact('songs'));
@@ -50,19 +53,21 @@ class SongController extends Controller
         $rules = [
             'title' => ['required', 'max:30'],
             'description' => ['required', 'min:5', 'max:200'],
-            'album_id' =>'required'
+            'album_id' => 'required'
         ];
         $messages = ['title.required' => 'title ay  kailangan', 'description.required' => 'may laman dapat', 'min' => 'too short'];
         $validator = Validator::make($request->all(), $rules, $messages);
         // dd($validator);
         if ($validator->fails()) {
             return redirect()->route('songs.create')
-                        ->withErrors($validator)
-                        ->withInput();
+                ->withErrors($validator)
+                ->withInput();
         }
-        $song = Song::create(['title' => $request->title,
-        'description' => $request->description,
-        'album_id' => $request->album_id]);
+        $song = Song::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'album_id' => $request->album_id
+        ]);
         return redirect()->route('songs.index');
     }
 
@@ -86,7 +91,7 @@ class SongController extends Controller
     public function edit($id)
     {
         $song = Song::find($id);
-        $my_album = Album::where('id', $song->album_id )->first();
+        $my_album = Album::where('id', $song->album_id)->first();
         // dd($my_album);
         $albums = Album::where('id', '<>', $song->album_id)->get();
         return view('song.edit', compact('song', 'my_album', 'albums'));
@@ -103,11 +108,11 @@ class SongController extends Controller
     {
         // dd($request);
         $song = Song::where('id', $id)->update([
-            'title' =>$request->title, 
-            'description' => $request->description, 
-            'album_id' => $request->album_id]);
+            'title' => $request->title,
+            'description' => $request->description,
+            'album_id' => $request->album_id
+        ]);
         return redirect()->route('songs.index');
-
     }
 
     /**
@@ -118,6 +123,8 @@ class SongController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // dd($id);
+        Song::destroy($id);
+        return redirect()->back();
     }
 }

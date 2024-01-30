@@ -20,8 +20,13 @@
                     <td>{{ $song->description }}</td>
                     <td>{{ $song->album_title }}</td>
 
-                    <td><a href="{{ route('songs.edit', $song->id) }}"><i class="fas fa-edit"></i></a><a
-                            href="{{ route('songs.destroy', $song->id) }}"><i class="fas fa-trash" style="color:red"></i></a>
+                    <td><a href="{{ route('songs.edit', $song->id) }}"><i class="fas fa-edit"></i></a>
+                        <form action="{{ route('songs.destroy', $song->id) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+
+                            <button><i class="fas fa-trash" style="color:red"></i></button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
