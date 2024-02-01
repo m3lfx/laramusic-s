@@ -32,7 +32,7 @@ Route::prefix('album')->group(function () {
     Route::post('/{id}/update', [AlbumController::class, 'update'])->name('album.update');
     Route::get('/{id}/delete', [AlbumController::class, 'delete'])->name('album.delete');
 });
-
+Route::post('/song-search',[SongController::class, 'search'])->name('songs.search');
 Route::get('/listeners/{id}/restore', [ListenerController::class, 'restore'])->name('listeners.restore');
 Route::resource('songs', SongController::class);
 Route::resource('listeners', ListenerController::class);

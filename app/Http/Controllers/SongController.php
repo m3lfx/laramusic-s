@@ -127,4 +127,18 @@ class SongController extends Controller
         Song::destroy($id);
         return redirect()->back();
     }
+
+    public function search(Request $request)
+    {
+        // dd($request->search);
+        $results = DB::table('songs')
+            ->join('albums', 'albums.id', '=', 'songs.album_id')
+            ->join('artists', 'artists.id', '=', 'albums.artist_id')
+            ->where('songs.title', 'like', "%{$request->search}%")
+            ->orWhere('description', 'like', "%{$request->search}%")
+            ->select('songs.title as song_title', 'songs.id', 'songs.description', 'albums.title as album_title', 'artists.name')
+            ->get();
+        // dd($results);
+        return view('song.results', compact('results'));
+    }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.base')
 @section('body')
-    {{-- {{dump($songs)}} --}}
-    <a class="btn btn-primary" href="{{ route('songs.create') }}" role="button" aria-disabled="true">add song</a>
+    {{-- {{dump($results)}} --}}
+    <a class="btn btn-primary" href="{{ route('songs.create') }}" role="button" aria-disabled="true">add result</a>
     <div class="container">
         {!! Form::open(['route' => 'songs.search', 'class' => 'form-control']) !!}
         {{ Form::label('search', 'Search Here', ['class' => 'form-control']) }}
@@ -15,23 +15,25 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">song id</th>
+                <th scope="col">result id</th>
                 <th scope="col">title</th>
+                <th scope="col">artist name</th>
                 <th scope="col">description</th>
                 <th scope="col">album name</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($songs as $song)
+            @foreach ($results as $result)
                 <tr>
-                    <td>{{ $song->id }}</td>
-                    <td>{{ $song->song_title }}</td>
-                    <td>{{ $song->description }}</td>
-                    <td>{{ $song->album_title }}</td>
+                    <td>{{ $result->id }}</td>
+                    <td>{{ $result->song_title }}</td>
+                    <td>{{ $result->name }}</td>
+                    <td>{{ $result->description }}</td>
+                    <td>{{ $result->album_title }}</td>
 
-                    <td><a href="{{ route('songs.edit', $song->id) }}"><i class="fas fa-edit"></i></a>
-                        <form action="{{ route('songs.destroy', $song->id) }}" method="POST">
+                    <td><a href="{{ route('songs.edit', $result->id) }}"><i class="fas fa-edit"></i></a>
+                        <form action="{{ route('songs.destroy', $result->id) }}" method="POST">
                             @method('DELETE')
                             @csrf
 
@@ -42,5 +44,5 @@
             @endforeach
         </tbody>
     </table>
-    {{ $songs->links() }}
+    {{-- {{ $results->links() }} --}}
 @endsection
