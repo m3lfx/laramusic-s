@@ -33,6 +33,7 @@ Route::prefix('album')->group(function () {
     Route::get('/{id}/delete', [AlbumController::class, 'delete'])->name('album.delete');
 });
 
+Route::get('/listeners/{id}/restore', [ListenerController::class, 'restore'])->name('listeners.restore');
 Route::resource('songs', SongController::class);
 Route::resource('listeners', ListenerController::class);
 

@@ -134,4 +134,11 @@ class ListenerController extends Controller
         Listener::destroy($id);
         return redirect()->route('listeners.index');
     }
+
+    public function restore($id) {
+        $listener = Listener::withTrashed()->where('id',$id)->first();
+        $listener->restore();
+        // dd($listener);
+        return redirect()->route('listeners.index');
+    }
 }

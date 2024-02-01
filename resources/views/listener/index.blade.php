@@ -31,8 +31,8 @@
                         </td>
                     @else
                         <td><i class="fas fa-edit" style="color:gray"></i>
-                            <button><i class="fas fa-trash" style="color:gray"></i></button>
-                            <a href="{{ route('listeners.edit', $listener->id) }}"><i class="fa-solid fa-rotate-left"
+                            <i class="fas fa-trash" style="color:gray"></i>
+                            <a href="{{ route('listeners.restore', $listener->id) }}"><i class="fa-solid fa-rotate-left"
                                     style="color:blue"></i></a>
                         </td>
                     @endif
