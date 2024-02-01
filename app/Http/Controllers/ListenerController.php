@@ -100,7 +100,33 @@ class ListenerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+        $listener = Listener::find($id);
+        if($request->file('img_path')) {
+            $path = Storage::putFileAs(
+                'public/images',
+                $request->file('img_path'),
+                $request->file('img_path')->getClientOriginalName()
+            );
+            $listener = Listener::where('id', $id)->update([
+                'name' => $request->name,
+                'address' => $request->address,
+                'img_path' => 'storage/images/'.$request->file('img_path')->getClientOriginalName()
+            ]);
+        }
+        else {
+            $listener = Listener::where('id', $id)->update([
+                'name' => $request->name,
+                'address' => $request->address
+                
+            ]);
+        }
+
+        
+        
+        
+        
+        return redirect()->route('listeners.index');
     }
 
     /**
