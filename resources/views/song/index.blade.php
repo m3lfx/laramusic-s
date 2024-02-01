@@ -2,6 +2,16 @@
 @section('body')
     {{-- {{dump($songs)}} --}}
     <a class="btn btn-primary" href="{{ route('songs.create') }}" role="button" aria-disabled="true">add song</a>
+    <div class="container">
+        {!! Form::open(['route' => 'listeners.store', 'class' => 'form-control', 'enctype' => 'multipart/form-data']) !!}
+        {{ Form::label('search', 'Search Here', ['class' => 'form-control']) }}
+        {!! Form::text('search') !!}
+        
+        {!! Form::submit('submit', ['class' => 'btn btn-primary']) !!}
+        
+        {!! Form::close() !!}
+    </div>
+    
     <table class="table table-striped">
         <thead>
             <tr>

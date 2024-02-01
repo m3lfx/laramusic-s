@@ -36,8 +36,6 @@
                                     style="color:blue"></i></a>
                         </td>
                     @endif
-
-
                 </tr>
             @endforeach
         </tbody>
