@@ -60,6 +60,7 @@ class ListenerController extends Controller
             $request->file('img_path'),
             $request->file('img_path')->getClientOriginalName()
         );
+        
         $listener->img_path = 'storage/images/'.$request->file('img_path')->getClientOriginalName();
         $listener->save();
         // dd($request->file('img_path'));
@@ -85,7 +86,9 @@ class ListenerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $listener = Listener::find($id);
+        // dd($listener);
+        return view('listener.edit', compact('listener'));
     }
 
     /**
