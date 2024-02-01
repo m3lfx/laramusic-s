@@ -136,6 +136,7 @@ class SongController extends Controller
             ->join('artists', 'artists.id', '=', 'albums.artist_id')
             ->where('songs.title', 'like', "%{$request->search}%")
             ->orWhere('description', 'like', "%{$request->search}%")
+            ->orWhere('name', 'like', "%{$request->search}%")
             ->select('songs.title as song_title', 'songs.id', 'songs.description', 'albums.title as album_title', 'artists.name')
             ->get();
         // dd($results);
