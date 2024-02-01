@@ -17,7 +17,7 @@ class ListenerController extends Controller
      */
     public function index()
     {
-        $listeners = Listener::all();
+        $listeners = Listener::withTrashed()->get();
         return view('listener.index', compact('listeners'));
     }
 
@@ -101,7 +101,7 @@ class ListenerController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request);
-        $listener = Listener::find($id);
+        
         if($request->file('img_path')) {
             $path = Storage::putFileAs(
                 'public/images',
@@ -118,14 +118,8 @@ class ListenerController extends Controller
             $listener = Listener::where('id', $id)->update([
                 'name' => $request->name,
                 'address' => $request->address
-                
             ]);
         }
-
-        
-        
-        
-        
         return redirect()->route('listeners.index');
     }
 
@@ -137,6 +131,7 @@ class ListenerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Listener::destroy($id);
+        return redirect()->route('listeners.index');
     }
 }
