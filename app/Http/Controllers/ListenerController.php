@@ -8,6 +8,7 @@ use App\Models\Album;
 use Validator;
 
 use Storage;
+use DB;
 
 class ListenerController extends Controller
 {
@@ -150,7 +151,16 @@ class ListenerController extends Controller
     }
 
     public function addAlbumListener(Request $request) {
-        dd($request);
+        $listener_id = 3;
+        foreach($request->album as $album_id) {
+            // dump($album_id);
+            DB::table('album_listener')->insert([
+                'album_id' => $album_id,
+                'listener_id' => 1,
+                'created_at' => now()
+            ]);
+        }
+        // dd($request->album);
         return redirect()->route('listeners.index');
     }
 }
