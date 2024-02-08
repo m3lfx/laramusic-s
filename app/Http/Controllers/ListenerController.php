@@ -9,6 +9,7 @@ use Validator;
 
 use Storage;
 use DB;
+use Auth;
 
 class ListenerController extends Controller
 {
@@ -146,17 +147,20 @@ class ListenerController extends Controller
 
     public function addAlbums() {
         $albums = Album::all();
+        // dd(Auth::user()->id);
+        // dd(Auth::id());
         // dd($albums);
         return view('listener.add_album', compact('albums'));
     }
 
     public function addAlbumListener(Request $request) {
+       
         $listener_id = 3;
         foreach($request->album as $album_id) {
             // dump($album_id);
             DB::table('album_listener')->insert([
                 'album_id' => $album_id,
-                'listener_id' => 1,
+                'listener_id' => Auth::id(),
                 'created_at' => now()
             ]);
         }
