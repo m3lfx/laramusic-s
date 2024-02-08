@@ -32,13 +32,15 @@ Route::prefix('album')->group(function () {
     Route::post('/{id}/update', [AlbumController::class, 'update'])->name('album.update');
     Route::get('/{id}/delete', [AlbumController::class, 'delete'])->name('album.delete');
 });
-Route::post('/song-search',[SongController::class, 'search'])->name('songs.search');
+Route::post('/song-search', [SongController::class, 'search'])->name('songs.search');
 Route::get('/listeners/{id}/restore', [ListenerController::class, 'restore'])->name('listeners.restore');
-Route::get('/listeners/add-album', [ListenerController::class, 'addAlbums'])->name('listeners.addAlbums');
-Route::post('/listeners/add-album', [ListenerController::class, 'addAlbumListener'])->name('listeners.addAlbumListener');
-Route::resource('songs', SongController::class);
-Route::resource('listeners', ListenerController::class);
+Route::get('/listeners/add-album', [ListenerController::class, 'addAlbums'])->name('listeners.addAlbums')->middleware('auth');
+Route::post('/listeners/add-album', [ListenerController::class, 'addAlbumListener'])->name('listeners.addAlbumListener')->middleware('auth');
 
+Route::middleware(['auth'])->group(function () {
+    Route::resource('songs', SongController::class);
+    Route::resource('listeners', ListenerController::class);
+});
 
 
 Route::get('/db', function () {
