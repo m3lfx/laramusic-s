@@ -145,6 +145,7 @@ class ListenerController extends Controller
 
     public function addAlbums() {
         $albums = Album::all();
-        return view('listener.add_album');
+        // dd($albums);
+        return view('listener.add_album', compact('albums'));
     }
 }
