@@ -47,3 +47,7 @@ Route::get('/db', function () {
         $table->dropColumn('username');
     });
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
