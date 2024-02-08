@@ -1,7 +1,7 @@
 @extends('layouts.base')
 @section('body')
     <div class="container">
-        {!! Form::open(['route' => 'listeners.store', 'class' => 'form-control', 'enctype' => 'multipart/form-data']) !!}
+        {!! Form::open(['route' => 'listeners.addAlbumListener', 'class' => 'form-control']) !!}
         @foreach ($albums as $album)
             <br>
             {{ Form::checkbox('album[]', $album->id, false, null, ['class' => 'form-control']) }}

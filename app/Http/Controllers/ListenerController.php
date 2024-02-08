@@ -148,4 +148,9 @@ class ListenerController extends Controller
         // dd($albums);
         return view('listener.add_album', compact('albums'));
     }
+
+    public function addAlbumListener(Request $request) {
+        dd($request);
+        return redirect()->route('listeners.index');
+    }
 }
