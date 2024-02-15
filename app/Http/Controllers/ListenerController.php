@@ -179,10 +179,33 @@ class ListenerController extends Controller
         $listener = Listener::where('user_id', Auth::id())
             ->select('id')
             ->first();
-        $albums = DB::table('albums')->join('album_listener', 'albums.id', '=', 'album_listener.album_id')->where('listener_id', $listener->id)->get();
-        
-        dd($albums);
-        return view('listener.edit_album', compact('listener'));
+        $myAlbums = DB::table('albums')->join('album_listener', 'albums.id', '=', 'album_listener.album_id')->where('listener_id', $listener->id)->pluck('albums.id')->toArray();
+        // ->toArray();
+        // ->toArray();
+        // dump($myAlbums->id);
+        // dd($myAlbums);
+        $albums = Album::all();
+        // dd($albums);
+        // $albums = DB::table('albums')->join('album_listener', 'albums.id', '=', 'album_listener.album_id')->where()->get();
+        // dd($albums);
+        return view('listener.edit_album', compact('listener', 'myAlbums', 'albums'));
+    }
+
+    public function updateAlbums(Request $request)
+    {
+        $listener = Listener::where('user_id', Auth::id())->select('id')->first();
+        // dd($listener->id);
+        $deleted = DB::table('album_listener')->where('listener_id', $listener->id)->delete();
+        if (!empty($request->album_id)) {
+            foreach ($request->album_id as $album_id) {
+                DB::table('album_listener')->insert([
+                    'album_id' => $album_id,
+                    'listener_id' => $listener->id,
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
+            }
+        }
     }
 }
 //composer require laravel/ui
