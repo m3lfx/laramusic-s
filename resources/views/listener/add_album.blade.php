@@ -1,5 +1,5 @@
-@extends('layouts.base')
-@section('body')
+@extends('layouts.app')
+@section('content')
     <div class="container">
         {!! Form::open(['route' => 'listeners.addAlbumListener', 'class' => 'form-control']) !!}
         @foreach ($albums as $album)

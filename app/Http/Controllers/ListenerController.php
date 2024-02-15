@@ -21,6 +21,7 @@ class ListenerController extends Controller
     public function index()
     {
         $listeners = Listener::withTrashed()->get();
+        // dd($listeners);
         return view('listener.index', compact('listeners'));
     }
 
@@ -157,12 +158,15 @@ class ListenerController extends Controller
     public function addAlbumListener(Request $request)
     {
 
-        $listener_id = 3;
+        // $listener_id = 3;
+        $listener = Listener::where('user_id', Auth::id())
+            ->select('id')
+            ->first();
         foreach ($request->album as $album_id) {
             // dump($album_id);
             DB::table('album_listener')->insert([
                 'album_id' => $album_id,
-                'listener_id' => Auth::id(),
+                'listener_id' => $listener->id,
                 'created_at' => now()
             ]);
         }

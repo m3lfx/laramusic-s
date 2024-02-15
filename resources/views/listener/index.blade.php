@@ -17,7 +17,14 @@
             @foreach ($listeners as $listener)
                 <tr>
                     <td>{{ $listener->id }}</td>
-                    <td><img src="{{ url($listener->img_path) }}" alt="listener image" width="50" height="50"></td>
+                    @if ($listener->img_path)
+                        <td><img src="{{ url($listener->img_path) }}" alt="listener image" width="50" height="50">
+                        </td>
+                    @else
+                        <td><img src="" alt="listener image" width="50" height="50">
+                        </td>
+                    @endif
+
                     <td>{{ $listener->name }}</td>
                     <td>{{ $listener->address }}</td>
                     @if ($listener->deleted_at === null)
