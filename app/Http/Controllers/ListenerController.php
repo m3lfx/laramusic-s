@@ -179,7 +179,10 @@ class ListenerController extends Controller
         $listener = Listener::where('user_id', Auth::id())
             ->select('id')
             ->first();
-        dd($listener->id);
+        $albums = DB::table('albums')->join('album_listener', 'albums.id', '=', 'album_listener.album_id')->where('listener_id', $listener->id)->get();
+        
+        dd($albums);
+        return view('listener.edit_album', compact('listener'));
     }
 }
 //composer require laravel/ui
