@@ -63,8 +63,8 @@ class ListenerController extends Controller
             $request->file('img_path'),
             $request->file('img_path')->getClientOriginalName()
         );
-        
-        $listener->img_path = 'storage/images/'.$request->file('img_path')->getClientOriginalName();
+
+        $listener->img_path = 'storage/images/' . $request->file('img_path')->getClientOriginalName();
         $listener->save();
         // dd($request->file('img_path'));
         return redirect()->route('listeners.index');
@@ -104,8 +104,8 @@ class ListenerController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request);
-        
-        if($request->file('img_path')) {
+
+        if ($request->file('img_path')) {
             $path = Storage::putFileAs(
                 'public/images',
                 $request->file('img_path'),
@@ -114,10 +114,9 @@ class ListenerController extends Controller
             $listener = Listener::where('id', $id)->update([
                 'name' => $request->name,
                 'address' => $request->address,
-                'img_path' => 'storage/images/'.$request->file('img_path')->getClientOriginalName()
+                'img_path' => 'storage/images/' . $request->file('img_path')->getClientOriginalName()
             ]);
-        }
-        else {
+        } else {
             $listener = Listener::where('id', $id)->update([
                 'name' => $request->name,
                 'address' => $request->address
@@ -138,14 +137,16 @@ class ListenerController extends Controller
         return redirect()->route('listeners.index');
     }
 
-    public function restore($id) {
-        $listener = Listener::withTrashed()->where('id',$id)->first();
+    public function restore($id)
+    {
+        $listener = Listener::withTrashed()->where('id', $id)->first();
         $listener->restore();
         // dd($listener);
         return redirect()->route('listeners.index');
     }
 
-    public function addAlbums() {
+    public function addAlbums()
+    {
         $albums = Album::all();
         // dd(Auth::user()->id);
         // dd(Auth::id());
@@ -153,10 +154,11 @@ class ListenerController extends Controller
         return view('listener.add_album', compact('albums'));
     }
 
-    public function addAlbumListener(Request $request) {
-       
+    public function addAlbumListener(Request $request)
+    {
+
         $listener_id = 3;
-        foreach($request->album as $album_id) {
+        foreach ($request->album as $album_id) {
             // dump($album_id);
             DB::table('album_listener')->insert([
                 'album_id' => $album_id,
@@ -168,8 +170,12 @@ class ListenerController extends Controller
         return redirect()->route('listeners.index');
     }
 
-    public function editAlbumListener() {
-        
+    public function editAlbumListener()
+    {
+        $listener = Listener::where('user_id', Auth::id())
+            ->select('id')
+            ->first();
+        dd($listener->id);
     }
 }
 //composer require laravel/ui

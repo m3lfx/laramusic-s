@@ -74,7 +74,6 @@ class RegisterController extends Controller
         Listener::create([
             'name' => $data['name'],
             'user_id' => $user->id,
-           
         ]);
 
         return $user;

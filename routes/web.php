@@ -38,6 +38,7 @@ Route::get('/listeners/add-album', [ListenerController::class, 'addAlbums'])->na
 Route::post('/listeners/add-album', [ListenerController::class, 'addAlbumListener'])->name('listeners.addAlbumListener')->middleware('auth');
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/listeners/edit-album', [ListenerController::class, 'editAlbumListener'])->name('listeners.editAlbumListener');
     Route::resource('songs', SongController::class);
     Route::resource('listeners', ListenerController::class);
 });
