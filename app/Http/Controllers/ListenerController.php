@@ -167,6 +167,10 @@ class ListenerController extends Controller
         // dd($request->album);
         return redirect()->route('listeners.index');
     }
+
+    public function editAlbumListener() {
+        
+    }
 }
 //composer require laravel/ui
 // php artisan ui bootstrap --auth
